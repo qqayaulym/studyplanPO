@@ -8,6 +8,7 @@ import '../features/shell/main_shell.dart';
 import '../features/splash/onboarding_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/statistics/statistics_screen.dart';
+import '../features/remote/presentation/remote_tasks_screen.dart';
 import '../features/subjects/presentation/subjects_screen.dart';
 import '../features/tasks/domain/task.dart';
 import '../features/tasks/presentation/task_detail_screen.dart';
@@ -28,6 +29,7 @@ class AppRoutes {
   static const String statistics = '/statistics';
   static const String settings = '/settings';
   static const String subjects = '/subjects';
+  static const String remote = '/remote';
 
   static Route<dynamic> onGenerateRoute(RouteSettings s) {
     Widget page;
@@ -62,6 +64,9 @@ class AppRoutes {
         break;
       case settings:
         page = const SettingsScreen();
+        break;
+      case remote:
+        page = const RemoteTasksScreen();
         break;
       case subjects:
         page = const SubjectsScreen();

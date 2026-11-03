@@ -11,6 +11,9 @@ class Task {
   final bool isFavorite;
   final DateTime createdAt;
 
+  /// Серверлік id (JSONPlaceholder todo.id). null — тапсырма тек жергілікті.
+  final int? remoteId;
+
   const Task({
     required this.id,
     required this.userId,
@@ -22,6 +25,7 @@ class Task {
     this.reminder = 'Еске салғышсыз',
     this.isDone = false,
     this.isFavorite = false,
+    this.remoteId,
   });
 
   Task copyWith({
@@ -32,6 +36,7 @@ class Task {
     String? reminder,
     bool? isDone,
     bool? isFavorite,
+    int? remoteId,
   }) {
     return Task(
       id: id,
@@ -44,6 +49,7 @@ class Task {
       isDone: isDone ?? this.isDone,
       isFavorite: isFavorite ?? this.isFavorite,
       createdAt: createdAt,
+      remoteId: remoteId ?? this.remoteId,
     );
   }
 
@@ -58,6 +64,7 @@ class Task {
         'isDone': isDone,
         'isFavorite': isFavorite,
         'createdAt': createdAt.millisecondsSinceEpoch,
+        'remoteId': remoteId,
       };
 
   factory Task.fromMap(Map<dynamic, dynamic> m) => Task(
@@ -71,5 +78,6 @@ class Task {
         isDone: (m['isDone'] as bool?) ?? false,
         isFavorite: (m['isFavorite'] as bool?) ?? false,
         createdAt: DateTime.fromMillisecondsSinceEpoch(m['createdAt'] as int),
+        remoteId: m['remoteId'] as int?,
       );
 }

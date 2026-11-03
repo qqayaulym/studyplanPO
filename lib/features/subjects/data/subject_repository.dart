@@ -45,13 +45,13 @@ class SubjectRepository extends ChangeNotifier {
     final n = name.trim();
     if (n.isEmpty) return AppStrings.enterSubject;
     if (byName(n) != null) return AppStrings.subjectExists;
-    final palette = AppSubjects.all;
+    const palette = AppSubjects.all;
     final p = palette[AppDatabase.subjects.length % palette.length];
     final subject = Subject(
       id: IdGen.next(),
       name: n,
-      backgroundValue: p.background.value,
-      foregroundValue: p.foreground.value,
+      backgroundValue: p.background.toARGB32(),
+      foregroundValue: p.foreground.toARGB32(),
       createdAt: DateTime.now(),
     );
     final ok = await AppDatabase.run(

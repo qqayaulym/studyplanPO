@@ -137,6 +137,21 @@ class TaskRepository extends ChangeNotifier {
     return result;
   }
 
+  /// Серверлік id бойынша жергілікті тапсырманы табу (сервер ↔ локал байланысы).
+  Task? byRemoteId(int remoteId) {
+    _sync();
+    for (final t in _tasks) {
+      if (t.remoteId == remoteId) return t;
+    }
+    return null;
+  }
+
+  /// Серверге әлі жіберілмеген жергілікті тапсырмалар.
+  List<Task> get notSynced {
+    _sync();
+    return _tasks.where((t) => t.remoteId == null).toList();
+  }
+
   // ---------------------------------------------------------------------------
   // CREATE
   // ---------------------------------------------------------------------------
@@ -146,6 +161,8 @@ class TaskRepository extends ChangeNotifier {
     required DateTime deadline,
     String description = '',
     String reminder = 'Еске салғышсыз',
+    bool isDone = false,
+    int? remoteId,
   }) async {
     final uid = _uid;
     if (uid == null) return false;
@@ -158,6 +175,8 @@ class TaskRepository extends ChangeNotifier {
       description: description.trim(),
       deadline: dateOnly(deadline),
       reminder: reminder,
+      isDone: isDone,
+      remoteId: remoteId,
       createdAt: DateTime.now(),
     );
     final ok = await AppDatabase.run(

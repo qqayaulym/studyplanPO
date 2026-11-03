@@ -91,8 +91,8 @@ class AppDatabase {
         final s = Subject(
           id: 'subj-${info.name}',
           name: info.name,
-          backgroundValue: info.background.value,
-          foregroundValue: info.foreground.value,
+          backgroundValue: info.background.toARGB32(),
+          foregroundValue: info.foreground.toARGB32(),
           createdAt: DateTime.fromMillisecondsSinceEpoch(t++),
         );
         await subjects.put(s.id, s.toMap());

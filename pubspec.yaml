@@ -13,6 +13,7 @@ dependencies:
   hive: ^2.2.3          # локалды NoSQL дерекқор (SQLite-қа балама), web/Windows/Android-та істейді
   hive_flutter: ^1.1.0  # Hive.initFlutter() — сақтау орнын автоматты анықтайды
   crypto: ^3.0.3        # құпиясөзді SHA-256 хэшімен сақтау үшін
+  http: ^1.6.0
 
 dev_dependencies:
   flutter_test:

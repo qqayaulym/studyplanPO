@@ -9,12 +9,11 @@ class PickerFormField extends FormField<String> {
     required String label,
     required List<String> items,
     required IconData icon,
-    String? initialValue,
+    super.initialValue,
     String hint = 'Таңдаңыз',
     super.validator,
     required ValueChanged<String> onSelected,
   }) : super(
-          initialValue: initialValue,
           builder: (state) {
             final context = state.context;
             Future<void> open() async {
@@ -73,11 +72,10 @@ class DateFormField extends FormField<DateTime> {
   DateFormField({
     super.key,
     required String label,
-    DateTime? initialValue,
+    super.initialValue,
     super.validator,
     required ValueChanged<DateTime> onSelected,
   }) : super(
-          initialValue: initialValue,
           builder: (state) {
             final context = state.context;
             Future<void> open() async {

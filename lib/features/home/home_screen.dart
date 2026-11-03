@@ -20,6 +20,7 @@ class HomeScreen extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        heroTag: null,
         tooltip: AppStrings.addTask,
         onPressed: () => Navigator.of(context).pushNamed(AppRoutes.taskForm),
         child: const Icon(Icons.add),

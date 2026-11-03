@@ -188,4 +188,32 @@ class AppStrings {
   static const String yourName = 'Аты-жөніңіз';
   static const String taskCount = 'тапсырма';
   static const String dueThisWeek = 'Жақын 7 күнде';
+
+  // ---- ПЖ №5: REST API ----
+  static const String serverTitle = 'Сервер (API)';
+  static const String serverSubtitle = 'Деректер JSONPlaceholder REST API-дан алынады';
+  static const String loading = 'Жүктелуде...';
+  static const String noInternet = 'Интернет байланысы жоқ. Желіні тексеріп, қайталап көріңіз';
+  static const String timeoutError = 'Сервер ұзақ жауап бермеді. Кейінірек қайталап көріңіз';
+  static const String serverError = 'Серверде қате орын алды';
+  static const String notFoundError = 'Сервер жазбаны таппады';
+  static const String badResponse = 'Сервер жауабын өңдеу мүмкін болмады';
+  static const String unknownError = 'Күтпеген қате орын алды';
+  static const String serverEmpty = 'Серверде тапсырма жоқ';
+  static const String serverAdded = 'Серверге жіберілді (POST)';
+  static const String serverUpdated = 'Сервердегі жазба өзгертілді';
+  static const String serverDeleted = 'Серверден жойылды (DELETE)';
+  static const String serverNote =
+      'JSONPlaceholder — оқу API: өзгерістерді қабылдайды, бірақ шын мәнінде сақтамайды. Сондықтан экран сервер жауабы бойынша жаңартылады.';
+  static const String importLocal = 'Жергілікті қорға көшіру';
+  static const String imported = 'Жергілікті қорға көшірілді';
+  static const String alreadyImported = 'Бұрыннан көшірілген';
+  static const String uploadLocal = 'Серверге жіберу';
+  static const String uploadedCount = 'Серверге жіберілді';
+  static const String nothingToUpload = 'Жіберілмеген жергілікті тапсырма жоқ';
+  static const String localNotSynced = 'Серверге жіберілмеген';
+  static const String newRemote = 'Жаңа серверлік жазба';
+  static const String editRemote = 'Жазбаны өзгерту';
+  static const String remoteTitle = 'Атауы';
+  static const String refresh = 'Жаңарту';
 }

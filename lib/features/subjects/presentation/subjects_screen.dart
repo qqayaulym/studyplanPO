@@ -73,6 +73,7 @@ class SubjectsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text(AppStrings.subjectsTitle)),
       floatingActionButton: FloatingActionButton(
+        heroTag: null,
         tooltip: AppStrings.addSubject,
         onPressed: () => _edit(context),
         child: const Icon(Icons.add),

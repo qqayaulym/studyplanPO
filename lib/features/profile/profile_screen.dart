@@ -126,6 +126,13 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   MenuTile(
+                    icon: Icons.cloud_outlined,
+                    title: AppStrings.serverTitle,
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(AppRoutes.remote),
+                  ),
+                  const SizedBox(height: 8),
+                  MenuTile(
                     icon: Icons.bar_chart,
                     title: AppStrings.statistics,
                     onTap: () =>
