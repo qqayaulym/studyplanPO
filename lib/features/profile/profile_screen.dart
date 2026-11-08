@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../app/routes.dart';
 import '../../app/theme/app_theme.dart';
@@ -72,7 +73,7 @@ class ProfileScreen extends StatelessWidget {
           child: AnimatedBuilder(
             animation: Listenable.merge([AuthService.instance, repo]),
             builder: (context, _) {
-              final user = AuthService.instance.currentUser;
+              final user = context.watch<AuthService>().currentUser;
               final name = user?.name ?? '';
               final initial = name.trim().isEmpty ? '?' : name.trim()[0].toUpperCase();
               return ListView(
@@ -130,6 +131,27 @@ class ProfileScreen extends StatelessWidget {
                     title: AppStrings.serverTitle,
                     onTap: () =>
                         Navigator.of(context).pushNamed(AppRoutes.remote),
+                  ),
+                  const SizedBox(height: 8),
+                  MenuTile(
+                    icon: Icons.location_on_outlined,
+                    title: 'Оқу орнының орналасуы',
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(AppRoutes.location),
+                  ),
+                  const SizedBox(height: 8),
+                  MenuTile(
+                    icon: Icons.timer_outlined,
+                    title: 'Pomodoro: назар қою уақыты',
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(AppRoutes.focus),
+                  ),
+                  const SizedBox(height: 8),
+                  MenuTile(
+                    icon: Icons.forum_outlined,
+                    title: 'Тапсырмалар чаты (real-time)',
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(AppRoutes.realtimeChat),
                   ),
                   const SizedBox(height: 8),
                   MenuTile(

@@ -13,6 +13,10 @@ import '../features/subjects/presentation/subjects_screen.dart';
 import '../features/tasks/domain/task.dart';
 import '../features/tasks/presentation/task_detail_screen.dart';
 import '../features/tasks/presentation/task_form_screen.dart';
+import '../features/auth/data/auth_service.dart';
+import '../features/location/location_screen.dart';
+import '../features/focus/focus_screen.dart';
+import '../features/realtime/presentation/realtime_chat_screen.dart';
 
 /// Барлық маршруттар бір жерде. Навигация: Navigator.pushNamed(context, AppRoutes.xxx).
 class AppRoutes {
@@ -30,6 +34,9 @@ class AppRoutes {
   static const String settings = '/settings';
   static const String subjects = '/subjects';
   static const String remote = '/remote';
+  static const String location = '/location';
+  static const String focus = '/focus';
+  static const String realtimeChat = '/realtime-chat';
 
   static Route<dynamic> onGenerateRoute(RouteSettings s) {
     Widget page;
@@ -52,6 +59,15 @@ class AppRoutes {
       case home:
         page = const MainShell();
         break;
+      case location:
+        page = const LocationScreen();
+        break;
+      case focus:
+        page = const FocusScreen();
+        break;
+      case realtimeChat:
+        page = const RealtimeChatScreen();
+        break;
       case taskDetail:
         page = TaskDetailScreen(taskId: s.arguments as String);
         break;
@@ -73,6 +89,12 @@ class AppRoutes {
         break;
       default:
         page = const SplashScreen();
+    }
+    const protectedRoutes = {
+      home, taskDetail, taskForm, statistics, settings, remote, subjects, location, focus, realtimeChat,
+    };
+    if (protectedRoutes.contains(s.name) && !AuthService.instance.isLoggedIn) {
+      page = const LoginScreen();
     }
     return MaterialPageRoute<dynamic>(builder: (_) => page, settings: s);
   }

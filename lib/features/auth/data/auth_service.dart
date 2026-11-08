@@ -4,6 +4,7 @@ import '../../../core/constants/app_strings.dart';
 import '../../../core/database/app_database.dart';
 import '../../../core/utils/id_gen.dart';
 import '../../../core/utils/password_hasher.dart';
+import '../../../core/utils/app_logger.dart';
 import '../domain/app_user.dart';
 
 /// Аутентификация қызметі. Пайдаланушылар Hive 'users' қорапшасында,
@@ -41,16 +42,21 @@ class AuthService extends ChangeNotifier {
     final user = _findByEmail(key);
     if (user == null ||
         user.passwordHash != PasswordHasher.hash(key, password)) {
+      AppLogger.info('Қате деректермен кіру әрекеті', name: 'Auth');
       return false;
     }
     await _startSession(user);
+    AppLogger.info('Пайдаланушы жүйеге кірді', name: 'Auth');
     return true;
   }
 
   /// false — егер email бұрын тіркелген болса.
   Future<bool> register(String name, String email, String password) async {
     final key = email.trim().toLowerCase();
-    if (_findByEmail(key) != null) return false;
+    if (_findByEmail(key) != null) {
+      AppLogger.info('Қайталанған email арқылы тіркелу тоқтатылды', name: 'Auth');
+      return false;
+    }
     final user = AppUser(
       id: IdGen.next(),
       name: name.trim(),
@@ -64,6 +70,7 @@ class AuthService extends ChangeNotifier {
       throw const DbException(AppStrings.saveError);
     }
     await _startSession(user);
+    AppLogger.info('Жаңа пайдаланушы тіркелді', name: 'Auth');
     return true;
   }
 
@@ -93,5 +100,6 @@ class AuthService extends ChangeNotifier {
     await AppDatabase.run(() => AppDatabase.settings.delete(_sessionKey));
     _current = null;
     notifyListeners();
+    AppLogger.info('Пайдаланушы жүйеден шықты', name: 'Auth');
   }
 }
